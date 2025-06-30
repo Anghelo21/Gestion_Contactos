@@ -71,6 +71,37 @@ void mostrar(){
     }
 }
 
+string buscar(const string &email){
+    int posi=-1;
+    for (int i=0; email[i]!='\0'; i++){
+        if(email[i]=='@'){
+            posi=i;
+            break;
+        }
+    }
+    string dominio="";
+    if(posi!=-1){
+        for(int i=posi+1; email[i]!='\0'; i++){
+            dominio=dominio+email[i];
+        }
+    }
+    return dominio;
+}
+
+void orden(){
+    for(int i=0; i<cantidad-1; i++){
+        for (int j=0; j<cantidad-i-1; j++){
+            if (buscar(contactos[j].email)>buscar(contactos[j+1].email)){
+                contactoEmail aux=contactos[j];
+                contactos[j]=contactos[j+1];
+                contactos[j+1]=aux;
+            }
+        }
+    }
+    cout<<endl<<"Contactos agrupados por dominio de correo:"<<endl;
+    mostrar();
+}
+
 int main(){
 	int opcion;
 	do{
@@ -94,7 +125,7 @@ int main(){
 				mostrar();
 				break;
 			case 4:
-				//orden();
+				orden();
 				break;
 			case 5:
 				cout<<"Saliendo..."<<endl;
