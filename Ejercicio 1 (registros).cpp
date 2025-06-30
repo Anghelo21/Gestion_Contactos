@@ -43,6 +43,22 @@ void agregar(){
     cantidad=cantidad+1;
 }
 
+void eliminar(){
+	int indice;
+    cout<<"Ingrese el indice del contacto a eliminar(1 - "<<cantidad<<"): ";
+    cin>>indice;
+    cin.ignore();
+    if(indice>0 && indice<=cantidad){
+    	for(int i=indice-1; i<cantidad-1; i++){
+        contactos[i]=contactos[i+1];
+    	}
+    	cantidad--;
+    	cout<<"Contacto eliminado"<<endl;
+	} else{
+		cout<<"indice no valido"<<endl;
+	}
+}
+
 void mostrar(){
     for(int i=0; i<cantidad; i++){
         cout<<endl<<"Contacto "<<(i + 1)<<": "<<endl;
@@ -72,7 +88,7 @@ int main(){
 				agregar();
 				break;
 			case 2:
-				//eliminar();
+				eliminar();
 				break;
 			case 3:
 				mostrar();
